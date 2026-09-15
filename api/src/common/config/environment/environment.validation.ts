@@ -1,5 +1,12 @@
 import { z } from 'zod';
-import { AppMode } from '../data/enum';
+import { AppMode, LogLevel } from '../data/enum';
+
+const booleanFromStringSchema = z
+  .enum(['true', 'false'])
+  .transform((value) => value === 'true');
+
+const nonEmptyStringSchema = z.string().trim().min(1);
+
 const appModeSchema = z
   .enum(['DEV', 'TEST', 'PROD', 'development', 'test', 'production'])
   .transform((value) => {
@@ -19,8 +26,12 @@ const appModeSchema = z
   });
 
 const environmentSchema = z.object({
-  APP_PORT: z.coerce.number().int().min(1).max(65535).default(3000),
   NODE_ENV: appModeSchema,
+  //APP_NAME: nonEmptyStringSchema, Erreur
+  APP_PORT: z.coerce.number().int().min(1).max(65535).default(3000),
+  //LOG_LEVEL: z.nativeEnum(LogLevel), Erreur
+  //DB_SYNC: booleanFromStringSchema, Erreur
+  AUTH_PASSWORD_MIN_LENGTH: z.coerce.number().int().min(1).default(15),
 });
 
 export type ValidatedEnvironment = z.infer<typeof environmentSchema>;
@@ -40,3 +51,25 @@ export const validateEnvironment = (
 
   return result.data;
 };
+
+/* Erreur
+.superRefine((environment, context) => {
+  if (environment.NODE_ENV === AppMode.Prod && environment.DB_SYNC) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['DB_SYNC'],
+      message: 'DB_SYNC=true is not allowed in production',
+    });
+  }
+  if (
+    environment.AUTH_REFRESH_TOKEN_TTL_SECONDS >
+    environment.AUTH_SESSION_ABSOLUTE_TTL_SECONDS
+  ) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['AUTH_REFRESH_TOKEN_TTL_SECONDS'],
+      message: 'Refresh token TTL cannot exceed absolute session TTL',
+    });
+  }
+});
+*/

@@ -7,9 +7,11 @@ export class EnvService {
   constructor(
     private readonly configService: ConfigService<ValidatedEnvironment, true>,
   ) {}
+
   get appMode(): AppMode {
     return this.get(ConfigKey.NodeEnv);
   }
+
   get appPort(): number {
     return this.get(ConfigKey.Port);
   }
