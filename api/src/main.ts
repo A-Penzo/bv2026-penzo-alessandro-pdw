@@ -1,18 +1,14 @@
+import { EnvService } from '@common/config/env.service';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from '@root/app.module.js';
-import { NestExpressApplication } from '@nestjs/platform-express';
-import { EnvService } from './common/config/env.service.js';
+import { AppModule } from '@root/app.module';
 
-export const bootstrap = async (): Promise<void> => {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
-}
+const bootstrap = async () => {
+  const app = await NestFactory.create(AppModule.register());
+  const envService: EnvService = app.get(EnvService);
+  await app.listen(envService.appPort);
+};
 
-const app = await NestFactory.create<NestExpressApplication>(
-  AppModule.register(),
-);
-
-const envService = app.get(EnvService);
-await app.listen(envService.appPort);
-
-void bootstrap();
+bootstrap().catch((err) => {
+  console.error('Error starting the application:', err);
+  process.exit(1);
+});
