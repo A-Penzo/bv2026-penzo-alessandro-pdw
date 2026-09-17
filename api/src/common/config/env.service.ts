@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, LOG_LEVELS } from '@nestjs/common';
 import { ValidatedEnvironment } from './environment/environment.validation';
 import { ConfigService } from '@nestjs/config';
-import { AppMode, ConfigKey } from './data/enum';
+import { AppMode, ConfigKey, LogLevel } from './data/enum';
 @Injectable()
 export class EnvService {
   constructor(
@@ -14,6 +14,14 @@ export class EnvService {
 
   get appPort(): number {
     return this.get(ConfigKey.Port);
+  }
+
+  get logLevel(): LogLevel {
+    return this.get(ConfigKey.LogLevel);
+  }
+
+  get isTest(): boolean {
+    return this.appMode === AppMode.Test;
   }
 
   get<T extends keyof ValidatedEnvironment>(key: T): ValidatedEnvironment[T] {
