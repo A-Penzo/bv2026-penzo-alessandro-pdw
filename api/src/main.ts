@@ -16,7 +16,7 @@ const bootstrap = async () => {
   app.useLogger(app.get(Logger));
   app.enableShutdownHooks();
 
-  const envService: EnvService = app.get(EnvService);
+  const envService = app.get(EnvService);
   await app.listen(envService.appPort);
 
   const appLogger = await app.resolve(AppLogger);

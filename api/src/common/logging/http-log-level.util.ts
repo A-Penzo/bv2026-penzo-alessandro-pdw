@@ -1,3 +1,5 @@
+export type HttpLogLevel = 'info' | 'warn' | 'error' | 'silent';
+
 import { LogLevel } from '@common/config/data/enum';
 
 const HEALTH_CHECK_LOG_PATHS = new Set(['/health/live', '/health/ready']);
