@@ -18,9 +18,6 @@ export class EnvService {
   get appPort(): number {
     return this.get(ConfigKey.AppPort);
   }
-  get isTest(): boolean {
-    return this.appMode() === AppMode.Test;
-  }
   get appBaseUrl(): string {
     return this.get(ConfigKey.AppBaseUrl);
   }
@@ -81,6 +78,58 @@ export class EnvService {
   }
   get databaseSchema(): string {
     return this.get(ConfigKey.DbSchema);
+  }
+
+  get passwordMinLength(): number {
+    return this.get(ConfigKey.AuthPasswordMinLength);
+  }
+  get passwordMaxLength(): number {
+    return this.get(ConfigKey.AuthPasswordMaxLength);
+  }
+  get passwordArgon2MemoryCost(): number {
+    return this.get(ConfigKey.AuthPasswordArgon2MemoryCost);
+  }
+  get passwordArgon2TimeCost(): number {
+    return this.get(ConfigKey.AuthPasswordArgon2TimeCost);
+  }
+  get passwordArgon2Parallelism(): number {
+    return this.get(ConfigKey.AuthPasswordArgon2Parallelism);
+  }
+  get passwordMaxAttempts(): number {
+    return this.get(ConfigKey.AuthPasswordMaxAttempts);
+  }
+  get passwordLockoutSeconds(): number {
+    return this.get(ConfigKey.AuthPasswordLockoutSeconds);
+  }
+  get accessTokenTtlSeconds(): number {
+    return this.get(ConfigKey.AuthAccessTokenTtlSeconds);
+  }
+  get refreshTokenTtlSeconds(): number {
+    return this.get(ConfigKey.AuthRefreshTokenTtlSeconds);
+  }
+  get sessionAbsoluteTtlSeconds(): number {
+    return this.get(ConfigKey.AuthSessionAbsoluteTtlSeconds);
+  }
+  get refreshTokenPepper(): string {
+    return this.get(ConfigKey.AuthRefreshTokenPepper);
+  }
+  get jwtActiveKid(): string {
+    return this.get(ConfigKey.AuthJwtActiveKid);
+  }
+  get jwtPrivateKeyBase64(): string {
+    return this.get(ConfigKey.AuthJwtPrivateKeyBase64);
+  }
+  get jwtPublicKeysJson(): string {
+    return this.get(ConfigKey.AuthJwtPublicKeysJson);
+  }
+  get testRefreshFailurePoint(): string {
+    return this.get(ConfigKey.AuthTestRefreshFailurePoint);
+  }
+  get isProduction(): boolean {
+    return this.appMode() === AppMode.Prod;
+  }
+  get isTest(): boolean {
+    return this.appMode() === AppMode.Test;
   }
 
   get<TConfigKey extends keyof ValidatedEnvironment>(

@@ -19,7 +19,9 @@ const bootstrap = async () => {
   const envService = app.get(EnvService);
   await app.listen(envService.appPort);
 
+  // AppLogger is transient-scoped, so it must be resolved (not get()) here.
   const appLogger = await app.resolve(AppLogger);
+
   appLogger.setContext('Bootstrap');
   appLogger.application({
     event: 'application.started',
