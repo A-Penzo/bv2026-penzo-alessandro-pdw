@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ValidatedEnvironment } from './environment/environment.validation';
+import { ValidatedEnvironment } from '@common/config/environment/environment.validation';
 import { ConfigService } from '@nestjs/config';
-import { AppMode, ConfigKey, LogLevel } from './data/enum';
-import { DatabaseType } from './data/enum/database-type.enum';
+import { AppMode, ConfigKey, LogLevel } from '@common/config/data/enum';
+import { DatabaseType } from '@common/config/data/enum/database-type.enum';
 @Injectable()
 export class EnvService {
   constructor(

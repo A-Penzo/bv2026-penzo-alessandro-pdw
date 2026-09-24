@@ -1,5 +1,5 @@
 import { Injectable, OnApplicationShutdown } from '@nestjs/common';
-import { AppLogger } from './app-logger.service';
+import { AppLogger } from '@common/logging/app-logger.service';
 
 @Injectable()
 export class ApplicationLifecycleLogger implements OnApplicationShutdown {

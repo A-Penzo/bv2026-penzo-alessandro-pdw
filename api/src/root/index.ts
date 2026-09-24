@@ -1,1 +1,1 @@
-export * from './app.module';
+export * from '@root/app.module';

@@ -1,1 +1,1 @@
-export * from './health.module';
+export * from '@core/health/health.module';

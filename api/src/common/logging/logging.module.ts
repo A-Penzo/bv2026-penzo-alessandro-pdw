@@ -8,9 +8,9 @@ import {
   REQUEST_ID_HEADER,
   REQUEST_ID_RESPONSE_HEADER,
   resolveRequestId,
-} from './request-id.util';
-import { resolveHttpLogLevel } from './http-log-level.util';
-import { AppLogger } from './app-logger.service';
+} from '@common/logging/request-id.util';
+import { resolveHttpLogLevel } from '@common/logging/http-log-level.util';
+import { AppLogger } from '@common/logging/app-logger.service';
 
 @Global()
 @Module({
