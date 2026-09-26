@@ -4,7 +4,7 @@ import { AppModule } from '@root/app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Logger } from 'nestjs-pino';
 import { AppLogger } from '@common/logging/app-logger.service';
-import { ApiInterceptor } from '@common/api/interceptor/api.interceptor';
+import { configureApplication } from '@root/bootstrap/application-bootstrap';
 
 const bootstrap = async () => {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -14,13 +14,11 @@ const bootstrap = async () => {
     },
   );
 
+  configureApplication(app);
   app.useLogger(app.get(Logger));
   app.enableShutdownHooks();
 
-  // AppLogger is transient-scoped, so it must be resolved (not get()) here.
   const appLogger = await app.resolve(AppLogger);
-
-  app.useGlobalInterceptors(app.get(ApiInterceptor));
 
   const envService = app.get(EnvService);
   await app.listen(envService.appPort);
