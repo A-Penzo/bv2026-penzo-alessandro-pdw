@@ -6,12 +6,15 @@ export enum ConfigKey {
   AppCorsOrigin = 'APP_CORS_ORIGIN',
   AppTrustProxy = 'APP_TRUST_PROXY',
   AppHttpPayloadErrorCode = 'APP_HTTP_PAYLOAD_ERROR_CODE',
+
   LogLevel = 'LOG_LEVEL',
+
   SwaggerEnabled = 'SWAGGER_ENABLED',
   SwaggerTitle = 'SWAGGER_TITLE',
   SwaggerDescription = 'SWAGGER_DESCRIPTION',
   SwaggerVersion = 'SWAGGER_VERSION',
   SwaggerPath = 'SWAGGER_PATH',
+
   DbType = 'DB_TYPE',
   DbHost = 'DB_HOST',
   DbPort = 'DB_PORT',
@@ -22,6 +25,7 @@ export enum ConfigKey {
   DbMigration = 'DB_MIGRATION',
   DbLog = 'DB_LOG',
   DbSchema = 'DB_SCHEMA',
+
   AuthPasswordMinLength = 'AUTH_PASSWORD_MIN_LENGTH',
   AuthPasswordMaxLength = 'AUTH_PASSWORD_MAX_LENGTH',
   AuthPasswordArgon2MemoryCost = 'AUTH_PASSWORD_ARGON2_MEMORY_COST',

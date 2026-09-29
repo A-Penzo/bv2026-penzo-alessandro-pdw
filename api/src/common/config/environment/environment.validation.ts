@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { AppMode, LogLevel } from '@common/config/data/enum';
-import { DatabaseType } from '@common/config/data/enum/database-type.enum';
+import { DatabaseType } from '../data/enum/database-type.enum';
 
 const booleanFromStringSchema = z
   .enum(['true', 'false'])

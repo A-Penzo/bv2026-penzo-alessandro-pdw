@@ -6,7 +6,7 @@ import {
   VersionColumn,
 } from 'typeorm';
 
-import { createUlid, ULID_LENGTH } from '@common/database/identifier/ulid.util';
+import { createUlid, ULID_LENGTH } from '../identifier/ulid.util';
 
 export abstract class BasePersistenceEntity {
   @PrimaryColumn({ name: 'id', type: 'varchar', length: ULID_LENGTH })
