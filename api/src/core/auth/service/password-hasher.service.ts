@@ -8,6 +8,7 @@ export class PasswordHasherService {
   constructor(private readonly envService: EnvService) {
     this.dummyHashPromise = this.hash('hoos-invalid-login-dummy');
   }
+
   hash(password: string): Promise<string> {
     return argon2.hash(password, {
       type: argon2.argon2id,
@@ -16,9 +17,11 @@ export class PasswordHasherService {
       parallelism: this.envService.passwordArgon2Parallelism,
     });
   }
+
   verify(hash: string, password: string): Promise<boolean> {
     return argon2.verify(hash, password);
   }
+
   verifyAgainstDummy(password: string): Promise<boolean> {
     return this.dummyHashPromise.then((hash) => this.verify(hash, password));
   }
