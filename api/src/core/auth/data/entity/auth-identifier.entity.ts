@@ -14,12 +14,16 @@ import { BasePersistenceEntity, ULID_LENGTH } from '@common/database';
 export class AuthIdentifierEntity extends BasePersistenceEntity {
   @Column({ name: 'account_id', type: 'varchar', length: ULID_LENGTH })
   accountId!: string;
+
   @Column({ name: 'type', type: 'enum', enum: AuthIdentifierType })
   type!: AuthIdentifierType;
+
   @Column({ name: 'value', type: 'varchar', length: 320 })
   value!: string;
+
   @Column({ name: 'verified_at', type: 'timestamptz', nullable: true })
   verifiedAt!: Date | null;
+
   @Column({ name: 'is_primary', type: 'boolean', default: false })
   isPrimary!: boolean;
 }

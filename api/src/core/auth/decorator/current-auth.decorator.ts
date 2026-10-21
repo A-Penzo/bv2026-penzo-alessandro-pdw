@@ -1,4 +1,5 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
+import type { Request } from 'express';
 import { AuthContext } from '../data';
 
 export const CurrentAuth = createParamDecorator(
