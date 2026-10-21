@@ -8,6 +8,7 @@ import { ApiInterceptor } from '@common/api/interceptor/api.interceptor';
 import { HttpExceptionFilter } from '@common/api/filter/http-exception.filter';
 import { DatabaseModule } from '@common/database';
 import { AccountModule } from '@core/account';
+import { AuthModule } from '@core/auth/auth.module';
 
 @Module({})
 export class AppModule {
@@ -20,6 +21,7 @@ export class AppModule {
         DatabaseModule,
         HealthModule,
         AccountModule,
+        AuthModule,
       ],
       controllers: [AppController],
       providers: [AppService, ApiInterceptor, HttpExceptionFilter],
