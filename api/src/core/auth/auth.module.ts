@@ -1,24 +1,31 @@
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccountModule } from '@core/account';
-import {
-  AuthIdentifierEntity,
-  PasswordCredentialEntity,
-  AuthSessionEntity,
-  AuthRefreshTokenEntity,
-} from './data';
+
+import { AuthController } from './controller/auth.controller';
 
 import {
-  AuthCookieService,
+  AuthService,
   AuthIdentifierService,
+  AuthCookieService,
   AuthSessionService,
-  CsrfService,
   PasswordCredentialService,
   PasswordHasherService,
   PasswordPolicyService,
+  CsrfService,
   RefreshTokenService,
   TokenCryptoService,
-} from './service';
+} from './service/';
+
+import {
+  AuthIdentifierEntity,
+  PasswordCredentialEntity,
+  AuthRefreshTokenEntity,
+  AuthSessionEntity,
+} from './data/entity/';
+
+import { AccessAuthGuard, OriginGuard } from './guard/';
 
 @Module({
   imports: [
@@ -30,16 +37,20 @@ import {
       AuthRefreshTokenEntity,
     ]),
   ],
+  controllers: [AuthController],
   providers: [
+    AuthService,
     AuthIdentifierService,
-    AuthCookieService,
-    AuthSessionService,
     PasswordCredentialService,
     PasswordHasherService,
     PasswordPolicyService,
+    AuthCookieService,
+    AuthSessionService,
     CsrfService,
-    TokenCryptoService,
     RefreshTokenService,
+    TokenCryptoService,
+    { provide: APP_GUARD, useClass: OriginGuard },
+    { provide: APP_GUARD, useClass: AccessAuthGuard },
   ],
 })
 export class AuthModule {}

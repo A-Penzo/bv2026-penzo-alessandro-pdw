@@ -1,6 +1,7 @@
 export * from './auth-cookie.service';
 export * from './auth-identifier.service';
 export * from './auth-session.service';
+export * from './auth.service';
 export * from './csrf.service';
 export * from './password-credential.service';
 export * from './password-hasher.service';
