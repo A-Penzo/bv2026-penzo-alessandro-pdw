@@ -8,6 +8,15 @@ import {
   AuthRefreshTokenEntity,
 } from './data';
 
+import {
+  AuthIdentifierService,
+  CsrfService,
+  PasswordCredentialService,
+  PasswordHasherService,
+  PasswordPolicyService,
+  TokenCryptoService,
+} from './service';
+
 @Module({
   imports: [
     AccountModule,
@@ -17,6 +26,14 @@ import {
       AuthSessionEntity,
       AuthRefreshTokenEntity,
     ]),
+  ],
+  providers: [
+    AuthIdentifierService,
+    PasswordCredentialService,
+    PasswordHasherService,
+    PasswordPolicyService,
+    CsrfService,
+    TokenCryptoService,
   ],
 })
 export class AuthModule {}

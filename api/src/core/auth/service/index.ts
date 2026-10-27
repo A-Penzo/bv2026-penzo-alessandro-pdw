@@ -3,3 +3,5 @@ export * from './password-policy.service';
 export * from './token-crypto.service';
 export * from './auth-cookie.service';
 export * from './csrf.service';
+export * from './auth-identifier.service';
+export * from './password-credential.service';

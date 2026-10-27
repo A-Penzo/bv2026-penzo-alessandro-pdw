@@ -1,6 +1,6 @@
-import { Entity, Index, ForeignKey, Column } from 'typeorm';
-import { AccountEntity } from '@core/account';
+import { Column, Entity, ForeignKey, Index } from 'typeorm';
 import { BasePersistenceEntity, ULID_LENGTH } from '@common/database';
+import { AccountEntity } from '@core/account/data/entity/account.entity';
 
 @Entity({ name: 'password_credential' })
 @Index('uq_password_credential_account_id', ['accountId'], { unique: true })
@@ -24,6 +24,12 @@ export class PasswordCredentialEntity extends BasePersistenceEntity {
 
   @Column({ name: 'locked_until', type: 'timestamptz', nullable: true })
   lockedUntil!: Date | null;
+
+  @Column({ name: 'last_failed_at', type: 'timestamptz', nullable: true })
+  lastFailedAt!: Date | null;
+
+  @Column({ name: 'last_used_at', type: 'timestamptz', nullable: true })
+  lastUsedAt!: Date | null;
 
   @Column({ name: 'changed_at', type: 'timestamptz' })
   changedAt!: Date;

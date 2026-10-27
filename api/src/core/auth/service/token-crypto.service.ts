@@ -10,7 +10,7 @@ import {
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { EnvService } from '@common/config';
 import { createUlid, ULID_REGEX } from '@common/database';
-import { AuthSecurityException } from '../data/exception/auth-security.exception';
+import { AuthSecurityException } from '../data/exception';
 
 type TrustedKeys = Record<string, string>;
 
