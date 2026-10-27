@@ -9,11 +9,14 @@ import {
 } from './data';
 
 import {
+  AuthCookieService,
   AuthIdentifierService,
+  AuthSessionService,
   CsrfService,
   PasswordCredentialService,
   PasswordHasherService,
   PasswordPolicyService,
+  RefreshTokenService,
   TokenCryptoService,
 } from './service';
 
@@ -29,11 +32,14 @@ import {
   ],
   providers: [
     AuthIdentifierService,
+    AuthCookieService,
+    AuthSessionService,
     PasswordCredentialService,
     PasswordHasherService,
     PasswordPolicyService,
     CsrfService,
     TokenCryptoService,
+    RefreshTokenService,
   ],
 })
 export class AuthModule {}
