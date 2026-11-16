@@ -61,6 +61,7 @@ export class AccessAuthGuard implements CanActivate {
     };
 
     const session = await this.sessions.verifyContext(auth);
+
     if (session.accessVersion !== claims.ver) {
       throw new AuthSecurityException();
     }
@@ -68,6 +69,7 @@ export class AccessAuthGuard implements CanActivate {
       this.csrf.assertValid(request, session);
     }
     request.auth = auth;
+
     return true;
   }
 }
